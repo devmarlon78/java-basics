@@ -34,16 +34,56 @@ class FixedStack implements IntStack {
 	
 }
 
+class DynamicStack implements IntStack {
+	private int tos;
+	private int size;
+	private int stackArr[];
+
+	public DynamicStack(int size) {
+		this.tos = TOS;
+		this.size = size;
+		this.stackArr = new int[this.size];
+	}
+
+	@Override 
+	public void push(int item) {
+		if(this.tos == this.size - 1) {
+			int tempArr[] = new int[this.size];
+			for(int i = 0; i < this.size; i++) {
+				tempArr[i] = this.stackArr[i];
+			}
+			this.stackArr = new int[this.size * 2];
+			this.size = this.size * 2;
+			for(int i = 0; i < tempArr.length; i++) {
+				this.stackArr[i] = tempArr[i];
+			}
+			this.stackArr[++this.tos] = item;
+		}
+		else {
+			this.stackArr[++tos] = item;
+		}
+	}
+
+	@Override
+	public int pop() {
+		if(this.tos < 0) {
+			System.out.println("Your stack is underflow");
+			return 0;
+		}
+		return this.stackArr[this.tos--];
+	}
+}
+
 
 public class stack {
 	public static void main(String[] args) {
-		FixedStack fixedStackArr = new FixedStack(10);
+		DynamicStack fixedStackArr = new DynamicStack(10);
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			fixedStackArr.push(i);
 		}
 
-		for(int j = 0; j < 10; j++) {
+		for(int j = 0; j < 20; j++) {
 			System.out.println(fixedStackArr.pop());
 		}
 	}
