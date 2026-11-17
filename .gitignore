@@ -1,0 +1,42 @@
+
+# Compiled Java files
+*.class
+
+# Build directories
+/bin/
+/out/
+/build/
+/target/
+
+# Java archives
+*.jar
+*.war
+*.ear
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# macOS
+.DS_Store
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Environment variables and secrets
+.env
+.env.*
