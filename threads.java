@@ -225,14 +225,25 @@ class NewThread extends Thread {
 	}
 }
 
+class OtherThread extends Thread {
+	private B r;
+	public OtherThread(String name, B r) {
+		super(name);
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		this.r.printName(this.getName());
+	}
+}
+
 class A {
 	public static void main(String[] args) {
 		B b = new B();
 		NewThread t1 = new NewThread("One", b);
-		NewThread t2 = new NewThread("Two", b);
-		NewThread t3 = new NewThread("Three", b);
+		OtherThread t2 = new OtherThread("Two", b);
 		t1.start();
 		t2.start();
-		t3.start();
 	}
 }
