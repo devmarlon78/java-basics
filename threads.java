@@ -210,6 +210,16 @@ class B {
 		}
 		System.out.println(name + " ]");
 	}
+
+	synchronized public void printNameOther(String name) {
+		System.out.println("{ ");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.out.println("Thread: " + name + " is interrupted");
+		}
+		System.out.println(name + " }");
+	}
 }
 
 class NewThread extends Thread {
@@ -234,7 +244,7 @@ class OtherThread extends Thread {
 
 	@Override
 	public void run() {
-		this.r.printName(this.getName());
+		this.r.printNameOther(this.getName());
 	}
 }
 
@@ -243,7 +253,7 @@ class A {
 		B b = new B();
 		B c = new B();
 		NewThread t1 = new NewThread("One", b);
-		OtherThread t2 = new OtherThread("Two", c);
+		OtherThread t2 = new OtherThread("Two", b);
 		t1.start();
 		t2.start();
 	}
