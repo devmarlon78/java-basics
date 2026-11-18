@@ -139,7 +139,7 @@ class A {
 	}
 }*/
 
-class NewThread extends Thread {
+/*class NewThread extends Thread {
 	public NewThread(String name, int priority) {
 		super(name);
 		this.setPriority(priority);
@@ -159,5 +159,41 @@ class A {
 		new NewThread("One", Thread.MIN_PRIORITY);
 		new NewThread("Two", 5);
 		new NewThread("Three", Thread.MAX_PRIORITY);
+	}
+}*/
+
+
+class NewThread extends Thread {
+	public NewThread(String name) {
+		super(name);
+	}
+
+	@Override
+	public void run() {
+		for(int i = 0; i < 10; i++) {
+			System.out.println(this.getName() + " : " + i);
+			if(i == 5) {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					System.out.println(this.getName() + " is interrupted: " + e);
+				}
+			}
+		}
+
+		System.out.println(this.getName() + " is exited");
+	}
+}
+
+class A {
+	public static void main(String[] args) {
+		NewThread t1 = new NewThread("One");
+		t1.start();
+		System.out.println("Thread One: " + t1.isAlive());
+		try {
+			t1.join(1000);
+		} catch (InterruptedException e) {
+			System.out.println("Main Thread is interrupted");
+		}
 	}
 }
