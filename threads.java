@@ -201,7 +201,7 @@ class A {
 
 
 class B {
-	public void printName(String name) {
+	synchronized public void printName(String name) {
 		System.out.println("[ ");
 		try {
 			Thread.sleep(1000);
