@@ -163,7 +163,7 @@ class A {
 }*/
 
 
-class NewThread extends Thread {
+/*class NewThread extends Thread {
 	public NewThread(String name) {
 		super(name);
 	}
@@ -195,5 +195,44 @@ class A {
 		} catch (InterruptedException e) {
 			System.out.println("Main Thread is interrupted");
 		}
+	}
+}*/
+
+
+
+class B {
+	public void printName(String name) {
+		System.out.println("[ ");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.out.println("Thread: " + name + " is interrupted");
+		}
+		System.out.println(name + " ]");
+	}
+}
+
+class NewThread extends Thread {
+	private B r;
+	public NewThread(String name, B r) {
+		super(name);
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		r.printName(this.getName());
+	}
+}
+
+class A {
+	public static void main(String[] args) {
+		B b = new B();
+		NewThread t1 = new NewThread("One", b);
+		NewThread t2 = new NewThread("Two", b);
+		NewThread t3 = new NewThread("Three", b);
+		t1.start();
+		t2.start();
+		t3.start();
 	}
 }
