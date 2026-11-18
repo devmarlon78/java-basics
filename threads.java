@@ -241,8 +241,9 @@ class OtherThread extends Thread {
 class A {
 	public static void main(String[] args) {
 		B b = new B();
+		B c = new B();
 		NewThread t1 = new NewThread("One", b);
-		OtherThread t2 = new OtherThread("Two", b);
+		OtherThread t2 = new OtherThread("Two", c);
 		t1.start();
 		t2.start();
 	}
