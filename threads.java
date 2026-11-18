@@ -80,7 +80,7 @@ class A {
 }*/
 
 
-class NewThread extends Thread {
+/*class NewThread extends Thread {
 	public NewThread() {
 		System.out.println("Child Thread");
 		this.start();
@@ -110,4 +110,32 @@ class A {
 
 		System.out.println("Main Thread Exiting");
 	}
+}*/
+
+
+/*class NewThread extends Thread {
+	public NewThread(String name) {
+		this.setName(name);
+		this.start();
+	}
+
+	@Override
+	public void run() {
+		for(int i = 0; i < 10; i++) {
+			System.out.println(this.getName() + " " + i);
+			if(i % 2 == 0) {
+				Thread.yield();
+			}
+		}
+		System.out.println(this.getName() + " is exited");
+	}
 }
+
+class A {
+	public static void main(String[] args) {
+		new NewThread("One");
+		new NewThread("Two");
+		new NewThread("Three");
+	}
+}*/
+
