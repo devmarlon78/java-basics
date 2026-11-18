@@ -139,3 +139,25 @@ class A {
 	}
 }*/
 
+class NewThread extends Thread {
+	public NewThread(String name, int priority) {
+		super(name);
+		this.setPriority(priority);
+		this.start();
+	}
+
+	@Override
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println(this.getName() + " : " + i);
+		}
+	}
+}
+
+class A {
+	public static void main(String[] args) {
+		new NewThread("One", Thread.MIN_PRIORITY);
+		new NewThread("Two", 5);
+		new NewThread("Three", Thread.MAX_PRIORITY);
+	}
+}
