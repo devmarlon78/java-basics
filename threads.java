@@ -201,7 +201,7 @@ class A {
 
 
 class B {
-	synchronized public void printName(String name) {
+	synchronized static public void printName(String name) {
 		System.out.println("[ ");
 		try {
 			Thread.sleep(1000);
@@ -231,7 +231,7 @@ class NewThread extends Thread {
 
 	@Override
 	public void run() {
-		r.printName(this.getName());
+		B.printName(this.getName());
 	}
 }
 
